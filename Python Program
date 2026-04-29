@@ -1,0 +1,66 @@
+# SYNTECEXHU# Step 1: Import Libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+
+# Step 2: Create outputs folder (if not exists)
+if not os.path.exists("outputs"):
+    os.makedirs("outputs")
+
+# Step 3: Load Dataset
+# Make sure your CSV file name is 'sales_data.csv'
+df = pd.read_csv("sales_data.csv")
+
+# Step 4: Data Preprocessing
+# Convert Date column to datetime
+df['Date'] = pd.to_datetime(df['Date'])
+
+# Extract Month-Year
+df['Month'] = df['Date'].dt.to_period('M')
+
+# Step 5: Monthly Sales Aggregation
+monthly_sales = df.groupby('Month')['Sales'].sum()
+
+# Step 6: Plot Time Series (Line Chart)
+plt.figure()
+monthly_sales.plot(marker='o')
+plt.title("Monthly Sales Trend")
+plt.xlabel("Month")
+plt.ylabel("Total Sales")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig("outputs/monthly_sales.png")
+plt.show()
+
+# Step 7: Category-wise Sales (Bar Chart)
+category_sales = df.groupby('Category')['Sales'].sum()
+
+plt.figure()
+category_sales.plot(kind='bar')
+plt.title("Sales by Category")
+plt.xlabel("Category")
+plt.ylabel("Total Sales")
+plt.tight_layout()
+plt.savefig("outputs/category_sales.png")
+plt.show()
+
+# Step 8: Category Share (Pie Chart)
+plt.figure()
+category_sales.plot(kind='pie', autopct='%1.1f%%')
+plt.title("Category Share Distribution")
+plt.ylabel("")
+plt.tight_layout()
+plt.savefig("outputs/category_share.png")
+plt.show()
+
+# Step 9: Print Summary (for report)
+print("\n===== PROJECT SUMMARY =====")
+print("1. Sales trends vary across months indicating demand fluctuations.")
+print("2. Some categories contribute significantly more to total sales.")
+print("3. Pie chart shows dominant categories driving revenue.")
+print("4. Visualizations help in better business decision-making.")
+
+# ==============================
+# END OF PROGRAM
+# ==============================
