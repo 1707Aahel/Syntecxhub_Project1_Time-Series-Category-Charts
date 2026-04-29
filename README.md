@@ -1,2 +1,2 @@
 # Syntecxhub_Project1_Time-Series-Category-Charts
-Data Science Internship
+The time series analysis shows fluctuations in sales over different months, indicating seasonal trends and varying demand patterns. The bar chart highlights that certain categories contribute significantly more to total sales compared to others. The pie chart further confirms the proportion of each category, revealing dominant segments that drive overall revenue. Proper labeling, legends, and axis formatting were applied to ensure clarity and interpretability of the visualizations.
